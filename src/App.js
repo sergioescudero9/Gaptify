@@ -1,30 +1,22 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./Home";
-import OtherPage from "./OtherPage";
-
-import NoMatch from "./NoMatch";
-import { Provider } from "./Provider";
+import React, { Suspense } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './theme';
+import Router from './Router';
+import GlobalStyles from './globalStyle';
 
 const Context = React.createContext();
 
-
-class App extends Component {
-  render() {
-    
-    return (
-      <Router>
-        <Provider>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path='/otherpage' component={ OtherPage } />
-            <Route exact path="/:access_token" component={Home} />
-            <Route component={NoMatch} />
-          </Switch>
-        </Provider>
-      </Router>
-    );
-  }
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <div>
+        <GlobalStyles />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Router />
+        </Suspense>
+      </div>
+    </ThemeProvider>
+  );
 }
 
-export { App as default, Context};
+export { App as default, Context };
