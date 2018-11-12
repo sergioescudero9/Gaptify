@@ -103,7 +103,7 @@ class Nav extends Component {
             </LogoLink>
           </LogoContainer>
           {links.map(({ to, text }) => (
-            <ListItem>
+            <ListItem key={text}>
               <LinkStyle to={to}>{text}</LinkStyle>
             </ListItem>
           ))}
