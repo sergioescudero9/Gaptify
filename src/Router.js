@@ -1,18 +1,18 @@
 import React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import DefaultLayout from './components/DefaultLayout';
-
-const Home = React.lazy(() => import('./containers/Home/Home'));
-const About = React.lazy(() => import('./containers/About/About'));
-const NoMatch = React.lazy(() => import('./containers'));
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './containers/Home/Home';
+import About from './containers/About/About';
+import NoMatch from './containers';
+import Header from './components/Header';
 
 function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        <DefaultLayout exact path="/" component={Home} />
-        <DefaultLayout exact path="/about" component={About} />
-        <DefaultLayout component={NoMatch} />
+        <Header />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route component={NoMatch} />
       </Switch>
     </BrowserRouter>
   );

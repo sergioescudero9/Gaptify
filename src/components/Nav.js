@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import Logo from './Logo';
 
 const LogoContainer = styled.li`
   max-width: 0;
   overflow: hidden;
-  background: white;
   transition: all 0.8s ease-in;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 16px;
+  background: white;
   &.fixed-nav{
     max-width: 500px;
+  }
+  @media (min-width: 680px) {
+    font-size: 30px;
   }
 `;
 
 const commonLink = css`
   text-decoration: none;
-  padding: 20px;
+  padding: 14px;
   display: inline-block;
   transition: all 0.2s;
 `;
@@ -54,10 +58,8 @@ const NavStyle = styled.nav`
   transition:all 0.5s;
   position: relative;
   z-index: 1;
-
   &.fixed-nav {
     position: fixed;
-    box-shadow: 0 5px 0 rgba(0,0,0,0.1);
   }
 `;
 
@@ -82,6 +84,10 @@ class Nav extends Component {
   }
 
   fixHeader = () => {
+    if (!this.offsetTop) {
+      this.offsetTop = this.nav.offsetTop;
+    }
+
     if (window.scrollY >= this.offsetTop) {
       document.body.style.paddingTop = `${this.nav.offsetHeight}px`;
       this.nav.classList.add('fixed-nav');
@@ -95,11 +101,11 @@ class Nav extends Component {
 
   render() {
     return (
-      <NavStyle ref={(nav) => { this.nav = nav; this.offsetTop = this.nav.offsetTop; }}>
+      <NavStyle ref={(nav) => { this.nav = nav; }}>
         <ListContainer>
           <LogoContainer ref={(logo) => { this.logo = logo; }}>
             <LogoLink to="/">
-              <code>code_dressing();</code>
+              <Logo />
             </LogoLink>
           </LogoContainer>
           {links.map(({ to, text }) => (

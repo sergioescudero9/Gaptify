@@ -16,10 +16,5 @@ const GlobalStyles = createGlobalStyle`
   *, *:before, *:after {
     box-sizing: inherit;
   }
-
-/*
-  .fixed-nav li.logo {
-    max-width: 500px;
-  } */
 `;
 export default GlobalStyles;

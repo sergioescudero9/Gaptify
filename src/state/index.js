@@ -1,5 +1,4 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
-import thunk from 'redux-thunk';
+import { combineReducers, createStore } from 'redux';
 import homeReducer from './Home';
 
 const rootReducer = combineReducers({
@@ -8,7 +7,7 @@ const rootReducer = combineReducers({
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunk)
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 export default store;
