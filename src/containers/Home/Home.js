@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getArtists as loadArtists } from '../../state/Home/action';
+import Card from '../../components/Card';
 
-const ContentCard = styled.div`
-  padding: 13px 16px 14px;
-`;
 const TitleStyle = styled.h4`
   padding: 8px 0;
 `;
@@ -17,18 +15,8 @@ const ParagraphStyle = styled.p`
 
 const LinkStyle = styled(Link)`
   text-decoration: none;
-  color: black;
-  background: white;
-  width: 50%;
-  margin: 30px;
-  transition: all .2s ease-in-out;
-  &:hover{
-    transform: scale(1.1);
-  }
-`;
-
-const ImageStyle = styled.img`
-  width: 100%;
+  display: inline-block;
+  width: 80%;
 `;
 
 const ContainerStyle = styled.div`
@@ -36,6 +24,7 @@ const ContainerStyle = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
 
 class Home extends Component {
   componentDidMount() {
@@ -52,8 +41,7 @@ class Home extends Component {
             id, name, img, listeners,
           }) => (
             <LinkStyle to={`/artist/${id}`} key={id}>
-              <ImageStyle src={img} alt={name} />
-              <ContentCard>
+              <Card img={img} name={name}>
                 <TitleStyle>{ name }</TitleStyle>
                 <ParagraphStyle>
                   Listeners:
@@ -61,7 +49,7 @@ class Home extends Component {
                     { listeners }
                   </span>
                 </ParagraphStyle>
-              </ContentCard>
+              </Card>
             </LinkStyle>
           ))
         }

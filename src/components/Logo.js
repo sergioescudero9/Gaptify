@@ -2,7 +2,7 @@ import React from 'react';
 
 function Logo() {
   return (
-    <code>code_dress();</code>
+    <code>gaptify();</code>
   );
 }
 export default Logo;
