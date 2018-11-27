@@ -1,30 +1,32 @@
 import {
   HOME_LOADING,
-  PRODUCTS_LOADED_FAILED,
-  PRODUCTS_LOADED_SUCCESS,
+  ARTISTS_LOADED_FAILED,
+  ARTISTS_LOADED_SUCCESS,
 } from './const';
 
 const initialState = {
   loading: false,
-  products: [],
+  artists: [],
+  error: '',
 };
 
-function home(state = initialState, { type, products }) {
+function home(state = initialState, { type, artists, error }) {
   switch (type) {
     case HOME_LOADING:
       return {
         ...state,
         loading: true,
       };
-    case PRODUCTS_LOADED_SUCCESS:
+    case ARTISTS_LOADED_SUCCESS:
       return {
         ...state,
-        products,
+        artists,
         loading: false,
       };
-    case PRODUCTS_LOADED_FAILED:
+    case ARTISTS_LOADED_FAILED:
       return {
         ...state,
+        error,
         loading: false,
       };
     default:

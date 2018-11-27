@@ -13,9 +13,6 @@ const LogoContainer = styled.li`
   &.fixed-nav{
     max-width: 500px;
   }
-  @media (min-width: 680px) {
-    font-size: 30px;
-  }
 `;
 
 const commonLink = css`

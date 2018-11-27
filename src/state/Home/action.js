@@ -1,34 +1,32 @@
 import {
   HOME_LOADING,
-  PRODUCTS_LOADED_FAILED,
-  PRODUCTS_LOADED_SUCCESS,
+  ARTISTS_LOADED_FAILED,
+  ARTISTS_LOADED_SUCCESS,
 } from './const';
 
-const loadRequest = () => ({
-  type: HOME_LOADING,
+const getArtistsSuccess = artists => ({
+  type: ARTISTS_LOADED_SUCCESS,
+  artists,
 });
 
-const loadProductSuccess = products => ({
-  type: PRODUCTS_LOADED_SUCCESS,
-  products,
-});
-
-const loadProductFailed = error => ({
-  type: PRODUCTS_LOADED_FAILED,
+const getArtistsFailed = error => ({
+  type: ARTISTS_LOADED_FAILED,
   error,
 });
 
-const loadProducts = () => (dispatch) => {
-  dispatch(loadRequest());
-  fetch('http://localhost:3004/products')
+const getArtists = (dispatch) => {
+  fetch('http://localhost:3004/artists')
     .then(response => response.json())
-    .then((products) => {
-      dispatch(loadProductSuccess(products));
+    .then((artists) => {
+      dispatch(getArtistsSuccess(artists));
     }).catch((error) => {
-      dispatch(loadProductFailed(error));
+      dispatch(getArtistsFailed(error));
     });
+  return {
+    type: HOME_LOADING,
+  };
 };
 
 export {
-  loadProducts
+  getArtists
 };
